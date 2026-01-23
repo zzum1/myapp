@@ -1,4 +1,4 @@
-import {Page, expect, test} from '@playwright/test';
+import {expect, test} from '@playwright/test';
 
 test.describe('Create Booking API Test', () => {
   let bookingId: number;
