@@ -7,6 +7,11 @@ export const token = async ({ request }: { request: APIRequestContext }) => {
       password: "password123",
     },
   });
+  if (response.status() !== 200) {
+    throw new Error(
+      `Failed to create token, status code: ${response.status()}`,
+    );
+  }
   const responseBody = await response.json();
   const token = responseBody.token;
   return token;
