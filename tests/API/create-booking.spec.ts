@@ -1,22 +1,22 @@
-import {expect, test} from '@playwright/test';
+import { expect, test } from "@playwright/test";
 
-test.describe('Create Booking API Test', () => {
+test.describe("Create Booking API Test", () => {
   let bookingId: number;
 
-  test('should create a new booking', async ({request}) => {
+  test("should create a new booking", async ({ request }) => {
     const newBooking = {
-      firstname: 'John',
-      lastname: 'Doe',
+      firstname: "John",
+      lastname: "Doe",
       totalprice: 150,
       depositpaid: true,
       bookingdates: {
-        checkin: '2023-10-01',
-        checkout: '2023-10-10',
+        checkin: "2023-10-01",
+        checkout: "2023-10-10",
       },
-      additionalneeds: 'Breakfast',
+      additionalneeds: "Breakfast",
     };
 
-    const response = await request.post('/booking', {
+    const response = await request.post("/booking", {
       data: newBooking,
     });
 
@@ -24,18 +24,7 @@ test.describe('Create Booking API Test', () => {
     const responseBody = await response.json();
     bookingId = responseBody.bookingid;
 
-    expect(responseBody).toHaveProperty('bookingid');
+    expect(responseBody).toHaveProperty("bookingid");
     expect(responseBody.booking).toMatchObject(newBooking);
   });
-
-//   test.afterEach(async ({request}) => {
-//     if (bookingId) {
-//       await request.delete(`/booking/${bookingId}`, {
-//         headers: {
-//           'Content-Type': 'application/json',
-//           Authorization: 'Basic ' + Buffer.from('admin:password123').toString('base64'),
-//         },
-//       });
-//     }
-//   });
 });

@@ -1,6 +1,6 @@
 import { APIRequestContext } from "@playwright/test";
 
-export const token = async ({ request }: { request: APIRequestContext }) => {
+export const getToken = async ({ request }: { request: APIRequestContext }) => {
   const response = await request.post("/auth", {
     data: {
       username: "admin",

@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Test Test 2",
   "main": "app.js",
-  "scripts": {},
+  "scripts": {
+    "test": "npx playwright test"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zzum1/myapp.git"
