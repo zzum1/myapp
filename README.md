@@ -1,2 +1,1 @@
-Test
-Test 2
+API testing lab with Playwright
