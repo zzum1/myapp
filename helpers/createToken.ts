@@ -1,10 +1,11 @@
 import { APIRequestContext } from "@playwright/test";
+require("dotenv").config();
 
 export const getToken = async ({ request }: { request: APIRequestContext }) => {
   const response = await request.post("/auth", {
     data: {
-      username: "admin",
-      password: "password123",
+      username: process.env.USERNAME,
+      password: process.env.PASSWORD,
     },
   });
   if (response.status() !== 200) {
