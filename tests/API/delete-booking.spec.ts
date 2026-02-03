@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 require("dotenv").config();
 
 test.describe("Delete Booking API Test", () => {
-  test.only("should delete the created booking", async ({ request }) => {
+  test("should delete the created booking", async ({ request }) => {
     const createBookingResponse = await request.post("/booking", {
       data: {
         firstname: "Tim",
