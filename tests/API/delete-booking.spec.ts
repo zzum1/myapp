@@ -1,20 +1,13 @@
 import { expect, test } from "@playwright/test";
+import { generateRandomUserData } from "../../helpers/user-data";
 require("dotenv").config();
 
 test.describe("Delete Booking API Test", () => {
   test("should delete the created booking", async ({ request }) => {
+    const newBooking = generateRandomUserData();
+
     const createBookingResponse = await request.post("/booking", {
-      data: {
-        firstname: "Tim",
-        lastname: "Doe",
-        totalprice: 150,
-        depositpaid: true,
-        bookingdates: {
-          checkin: "2023-10-01",
-          checkout: "2023-10-10",
-        },
-        additionalneeds: "Dinner",
-      },
+      data: newBooking,
     });
 
     expect(createBookingResponse.status()).toBe(200);

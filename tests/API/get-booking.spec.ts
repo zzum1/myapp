@@ -1,20 +1,11 @@
 import { expect, test } from "@playwright/test";
+import { generateRandomUserData } from "../../helpers/user-data";
 
 test.describe("Get Booking API Test", () => {
   let bookingId: number;
 
   test("should fetch a new booking", async ({ request }) => {
-    const newBooking = {
-      firstname: "John New",
-      lastname: "New Dow",
-      totalprice: 150,
-      depositpaid: true,
-      bookingdates: {
-        checkin: "2023-10-01",
-        checkout: "2023-10-10",
-      },
-      additionalneeds: "Lunch",
-    };
+    const newBooking = generateRandomUserData();
 
     const response = await request.post("/booking", {
       data: newBooking,
