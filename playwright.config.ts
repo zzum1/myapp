@@ -1,7 +1,7 @@
 import { defineConfig, devices } from "@playwright/test";
 
 export default defineConfig({
-  testDir: "./tests/API",
+  // testDir: "./tests",
 
   fullyParallel: true,
 
@@ -15,7 +15,7 @@ export default defineConfig({
 
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
-    baseURL: "https://restful-booker.herokuapp.com",
+    // baseURL: "https://restful-booker.herokuapp.com",
 
     trace: "on",
   },
@@ -26,9 +26,20 @@ export default defineConfig({
       testMatch: /.*\.setup\.ts/,
     },
     {
-      name: "chromium",
-      use: { ...devices["Desktop Chrome"] },
-      dependencies: ["setup"],
+      name: "API Tests",
+      testDir: "./tests/api",
+      use: {
+        ...devices["Desktop Chrome"],
+        baseURL: "https://restful-booker.herokuapp.com",
+      },
+    },
+    {
+      name: "E2E Tests",
+      testDir: "./tests/e2e",
+      use: {
+        ...devices["Desktop Chrome"],
+        baseURL: "https://gopadel.lt", // Main page URL for not authenticated E2E tests
+      },
     },
   ],
 });
