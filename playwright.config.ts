@@ -23,7 +23,7 @@ export default defineConfig({
   projects: [
     {
       name: "API Tests",
-      testDir: "./api",
+      testDir: "./API",
       use: {
         ...devices["Desktop Chrome"],
         baseURL: "https://restful-booker.herokuapp.com",
