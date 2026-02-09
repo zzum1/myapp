@@ -1,7 +1,7 @@
 import { defineConfig, devices } from "@playwright/test";
 
 export default defineConfig({
-  testDir: "./tests",
+  // testDir: "./tests",
 
   fullyParallel: true,
 
@@ -23,7 +23,7 @@ export default defineConfig({
   projects: [
     {
       name: "API Tests",
-      testDir: "./API",
+      testDir: "./tests/API",
       use: {
         ...devices["Desktop Chrome"],
         baseURL: "https://restful-booker.herokuapp.com",
@@ -31,7 +31,7 @@ export default defineConfig({
     },
     {
       name: "E2E Tests",
-      testDir: "./e2e",
+      testDir: "./tests/e2e",
       use: {
         ...devices["Desktop Chrome"],
         baseURL: "https://gopadel.lt", // Main page URL for not authenticated E2E tests
