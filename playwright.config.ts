@@ -1,7 +1,7 @@
 import { defineConfig, devices } from "@playwright/test";
 
 export default defineConfig({
-  testDir: "./tests",
+  // testDir: "./tests",
 
   fullyParallel: true,
 
@@ -11,7 +11,7 @@ export default defineConfig({
 
   workers: process.env.CI ? 1 : undefined,
 
-  reporter: "html",
+  reporter: "list",
 
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */

@@ -29,6 +29,5 @@ jobs:
         if: ${{ !cancelled() }}
         with:
           name: playwright-report
-          run: npx playwright test --reporter=list
           path: playwright-report/
           retention-days: 30
