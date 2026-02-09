@@ -5,6 +5,11 @@ on:
   pull_request:
     branches: [main, master]
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   # JOB 1: API Tests
   api-tests:
@@ -23,11 +28,16 @@ jobs:
           USERNAME: ${{ secrets.USERNAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
         run: npx playwright test --project='API Tests'
-      - uses: actions/upload-artifact@v4
+      - name: Upload API Test Report
+        uses: actions/upload-pages-artifact@v3
         if: always()
         with:
           name: api-report
           path: playwright-report/api/
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        if: always()
 
   # JOB 2: E2E Tests (Runs at the same time as API)
   e2e-tests:
@@ -44,8 +54,13 @@ jobs:
         run: npx playwright install --with-deps
       - name: Run E2E Tests
         run: npx playwright test --project='E2E Tests' --max-failures=2
-      - uses: actions/upload-artifact@v4
+      - name: Upload E2E Test Report
+        uses: actions/upload-pages-artifact@v3
         if: always()
         with:
           name: e2e-report
           path: playwright-report/e2e/
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        if: always()
