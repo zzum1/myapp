@@ -22,9 +22,9 @@ jobs:
           TOKEN: ${{ secrets.TOKEN }}
           USERNAME: ${{ secrets.USERNAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
-        run: npx playwright test --project="API Tests"
+        run: npx playwright test --project='API Tests'
       - name: E2E tests
-        run: npx playwright test --project="E2E Tests"
+        run: npx playwright test --project='E2E Tests'
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
