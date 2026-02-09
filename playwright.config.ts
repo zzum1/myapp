@@ -27,7 +27,7 @@ export default defineConfig({
     },
     {
       name: "API Tests",
-      testDir: "./tests/api",
+      testDir: "./api",
       use: {
         ...devices["Desktop Chrome"],
         baseURL: "https://restful-booker.herokuapp.com",
@@ -35,7 +35,7 @@ export default defineConfig({
     },
     {
       name: "E2E Tests",
-      testDir: "./tests/e2e",
+      testDir: "./e2e",
       use: {
         ...devices["Desktop Chrome"],
         baseURL: "https://gopadel.lt", // Main page URL for not authenticated E2E tests
