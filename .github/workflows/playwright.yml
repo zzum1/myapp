@@ -17,12 +17,14 @@ jobs:
         run: npm ci
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
-      - name: Run Playwright tests
+      - name: API tests
         env:
           TOKEN: ${{ secrets.TOKEN }}
           USERNAME: ${{ secrets.USERNAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
-        run: npx playwright test
+        run: npx playwright test --project="API Tests"
+      - name: E2E tests
+        run: npx playwright test --project="E2E Tests"
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
