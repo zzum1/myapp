@@ -16,7 +16,7 @@ export default defineConfig({
     [
       "html",
       {
-        outputDir: `playwright-report/${process.env.REPORT_NAME || "default"}`,
+        outputFolder: `playwright-report/${process.env.REPORT_NAME || "default"}`,
       },
     ],
   ],
