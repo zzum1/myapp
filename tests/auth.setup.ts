@@ -4,7 +4,7 @@ require("dotenv").config();
 const userSession = "playwright/.auth/user.json";
 
 setup("Authenticate and save session", async ({ request }) => {
-  await request.post(process.env.LOGIN_URL!, {
+  await request.post(process.env.BASE_URL!, {
     form: {
       email: process.env.PADEL_USER_EMAIL!,
       password: process.env.PADEL_USER_PASSWORD!,

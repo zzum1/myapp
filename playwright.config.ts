@@ -30,6 +30,10 @@ export default defineConfig({
 
   projects: [
     {
+      name: "Setup",
+      testMatch: /.*\.setup\.ts/,
+    },
+    {
       name: "API Tests",
       testDir: "./tests/API",
       use: {
@@ -42,8 +46,10 @@ export default defineConfig({
       testDir: "./tests/e2e",
       use: {
         ...devices["Desktop Chrome"],
-        baseURL: "https://gopadel.lt", // Main page URL for not authenticated E2E tests
+        baseURL: "https://gopadel.lt",
+        storageState: "playwright/.auth/user.json",
       },
+      dependencies: ["Setup"],
     },
   ],
 });
