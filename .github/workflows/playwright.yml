@@ -1,12 +1,18 @@
-name: Playwright Tests
+name: Auto Tests
 on:
   push:
     branches: [main, master]
   pull_request:
     branches: [main, master]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
-  test:
-    timeout-minutes: 60
+  api-tests:
+    timeout-minutes: 15
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -15,23 +21,61 @@ jobs:
           node-version: lts/*
       - name: Install dependencies
         run: npm ci
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
-      - name: Debug - List Files and Tests
-        run: |
-          ls -R tests/
-          npx playwright test --list --project='API Tests'
-      - name: API tests
+      - name: Run API Tests
         env:
+          REPORT_NAME: api
           TOKEN: ${{ secrets.TOKEN }}
           USERNAME: ${{ secrets.USERNAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
         run: npx playwright test --project='API Tests'
-      - name: E2E tests
-        run: npx playwright test --project='E2E Tests'
-      - uses: actions/upload-artifact@v4
-        if: ${{ !cancelled() }}
+      - name: Upload API Test Report
+        uses: actions/upload-artifact@v4
+        if: always()
         with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 30
+          name: api-report
+          path: playwright-report/api/
+
+  e2e-tests:
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Browsers
+        run: npx playwright install --with-deps
+      - name: Run E2E Tests
+        env:
+          REPORT_NAME: e2e
+        run: npx playwright test --project='E2E Tests'
+      - name: Upload E2E Test Report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: e2e-report
+          path: playwright-report/e2e/
+
+  deploy-reports:
+    needs: [api-tests, e2e-tests]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download API Report
+        uses: actions/download-artifact@v4
+        with:
+          name: api-report
+          path: combined-report/api
+      - name: Download E2E Report
+        uses: actions/download-artifact@v4
+        with:
+          name: e2e-report
+          path: combined-report/e2e
+      - name: Upload to Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: combined-report/
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
