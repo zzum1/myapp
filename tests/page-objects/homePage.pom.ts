@@ -17,7 +17,7 @@ export class HomePage {
     await this.page.goto("/");
   }
 
-  async isHeaderVisible() {
+  async headerShouldBeVisible() {
     await expect(this.stickyHeader).toBeVisible();
   }
 }
