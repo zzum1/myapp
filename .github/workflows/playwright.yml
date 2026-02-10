@@ -27,6 +27,9 @@ jobs:
           TOKEN: ${{ secrets.TOKEN }}
           USERNAME: ${{ secrets.USERNAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
+          BASE_URL: ${{ secrets.BASE_URL }}
+          PADEL_USER_EMAIL: ${{ secrets.PADEL_USER_EMAIL }}
+          PADEL_USER_PASSWORD: ${{ secrets.PADEL_USER_PASSWORD }}
         run: npx playwright test --project='API Tests'
       - name: Upload API Test Report
         uses: actions/upload-artifact@v4
