@@ -4,8 +4,6 @@ dotenv.config();
 import { defineConfig, devices } from "@playwright/test";
 
 export default defineConfig({
-  // testDir: "./tests",
-
   fullyParallel: true,
 
   forbidOnly: !!process.env.CI,
@@ -25,9 +23,6 @@ export default defineConfig({
   ],
 
   use: {
-    /* Base URL to use in actions like `await page.goto('')`. */
-    // baseURL: "https://restful-booker.herokuapp.com",
-
     trace: "on",
   },
 
@@ -41,7 +36,7 @@ export default defineConfig({
       testDir: "./tests/API",
       use: {
         ...devices["Desktop Chrome"],
-        baseURL: "https://restful-booker.herokuapp.com",
+        baseURL: process.env.API_BASE_URL,
       },
     },
     {
@@ -49,7 +44,7 @@ export default defineConfig({
       testDir: "./tests/e2e",
       use: {
         ...devices["Desktop Chrome"],
-        baseURL: "https://gopadel.lt",
+        baseURL: process.env.HOME_PAGE_URL,
         storageState: "playwright/.auth/user.json",
       },
       dependencies: ["Setup"],
