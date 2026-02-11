@@ -24,6 +24,7 @@ jobs:
       - name: Run API Tests
         env:
           REPORT_NAME: api
+          API_BASE_URL: ${{ secrets.API_BASE_URL }}
           TOKEN: ${{ secrets.TOKEN }}
           USERNAME: ${{ secrets.USERNAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
@@ -50,7 +51,7 @@ jobs:
       - name: Run E2E Tests
         env:
           REPORT_NAME: e2e
-          BASE_URL: ${{ secrets.BASE_URL }}
+          HOME_PAGE_URL: ${{ secrets.HOME_PAGE_URL }}
           PADEL_USER_EMAIL: ${{ secrets.PADEL_USER_EMAIL }}
           PADEL_USER_PASSWORD: ${{ secrets.PADEL_USER_PASSWORD }}
         run: npx playwright test --project='E2E Tests'
