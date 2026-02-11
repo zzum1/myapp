@@ -1,7 +1,6 @@
 import { expect, test } from "@playwright/test";
 import { generateRandomUserData } from "../../helpers/user-data";
 import { faker } from "@faker-js/faker";
-require("dotenv").config();
 
 test.describe("Update Booking API Test", () => {
   let bookingId: number;

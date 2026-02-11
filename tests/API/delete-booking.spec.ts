@@ -1,6 +1,5 @@
 import { expect, test } from "@playwright/test";
 import { generateRandomUserData } from "../../helpers/user-data";
-require("dotenv").config();
 
 test.describe("Delete Booking API Test", () => {
   test("should delete the created booking", async ({ request }) => {

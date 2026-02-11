@@ -1,5 +1,4 @@
 import { test as setup, expect } from "@playwright/test";
-require("dotenv").config();
 
 const userSession = "playwright/.auth/user.json";
 
