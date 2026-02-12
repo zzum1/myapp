@@ -4,6 +4,7 @@ export class HomePage {
   readonly page: Page;
   readonly stickyHeader: Locator;
   readonly reservationButton: Locator;
+  readonly cookieConsentButton: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -11,13 +12,20 @@ export class HomePage {
     this.reservationButton = page.getByRole("link", {
       name: "Rezervuoti aikštelę",
     });
+    this.cookieConsentButton = page.locator("#cookieadmin_reject_button");
   }
 
-  async goto() {
+  async goToHomePage() {
     await this.page.goto("/");
   }
 
   async headerShouldBeVisible() {
     await expect(this.stickyHeader).toBeVisible();
+  }
+
+  async clickCookieConsent() {
+    if (await this.cookieConsentButton.isVisible()) {
+      await this.cookieConsentButton.click();
+    }
   }
 }

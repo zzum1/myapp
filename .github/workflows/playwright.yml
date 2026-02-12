@@ -24,6 +24,7 @@ jobs:
       - name: Run API Tests
         env:
           REPORT_NAME: api
+          API_BASE_URL: ${{ secrets.API_BASE_URL }}
           TOKEN: ${{ secrets.TOKEN }}
           USERNAME: ${{ secrets.USERNAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
@@ -50,9 +51,11 @@ jobs:
       - name: Run E2E Tests
         env:
           REPORT_NAME: e2e
+          HOME_PAGE_URL: ${{ secrets.HOME_PAGE_URL }}
           BASE_URL: ${{ secrets.BASE_URL }}
           PADEL_USER_EMAIL: ${{ secrets.PADEL_USER_EMAIL }}
           PADEL_USER_PASSWORD: ${{ secrets.PADEL_USER_PASSWORD }}
+          DASHBOARD_URL: ${{ secrets.DASHBOARD_URL }}
         run: npx playwright test --project='E2E Tests'
       - name: Upload E2E Test Report
         uses: actions/upload-artifact@v4
