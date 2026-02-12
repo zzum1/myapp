@@ -1,4 +1,4 @@
-import { test, expect, type Locator, type Page } from "@playwright/test";
+import { expect, Locator, Page } from "@playwright/test";
 
 export class HomePage {
   readonly page: Page;
@@ -27,5 +27,9 @@ export class HomePage {
     if (await this.cookieConsentButton.isVisible()) {
       await this.cookieConsentButton.click();
     }
+  }
+
+  async clickReservationButton() {
+    await this.reservationButton.click();
   }
 }
