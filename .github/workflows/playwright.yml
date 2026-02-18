@@ -52,7 +52,7 @@ jobs:
         env:
           REPORT_NAME: e2e
           HOME_PAGE_URL: ${{ secrets.HOME_PAGE_URL }}
-          BASE_URL: ${{ secrets.BASE_URL }}
+          LOGIN_URL: ${{ secrets.LOGIN_URL }}
           PADEL_USER_EMAIL: ${{ secrets.PADEL_USER_EMAIL }}
           PADEL_USER_PASSWORD: ${{ secrets.PADEL_USER_PASSWORD }}
           DASHBOARD_URL: ${{ secrets.DASHBOARD_URL }}
