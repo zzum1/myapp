@@ -63,25 +63,3 @@ jobs:
         with:
           name: e2e-report
           path: playwright-report/e2e/
-
-  deploy-reports:
-    needs: [api-tests, e2e-tests]
-    if: always()
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download API Report
-        uses: actions/download-artifact@v4
-        with:
-          name: api-report
-          path: combined-report/api
-      - name: Download E2E Report
-        uses: actions/download-artifact@v4
-        with:
-          name: e2e-report
-          path: combined-report/e2e
-      - name: Upload to Pages
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: combined-report/
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4

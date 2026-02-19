@@ -7,7 +7,7 @@ test.describe("Update Booking API Test", () => {
   let bookingDatesCheckin: string;
   let bookingDatesCheckout: string;
 
-  test("should update a booking", async ({ request }) => {
+  test("should update a booking", { tag: "@critical" }, async ({ request }) => {
     const newBooking = generateRandomUserData();
 
     const response = await request.post("/booking", {
