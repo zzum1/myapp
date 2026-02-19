@@ -6,7 +6,8 @@
   "scripts": {
     "test": "npx playwright test",
     "test:api": "npx playwright test --project=\"API Tests\"",
-    "test:e2e": "npx playwright test --project=\"E2E Tests\""
+    "test:e2e": "npx playwright test --project=\"E2E Tests\"",
+    "test:api-critical": "npx playwright test --project=\"API Tests\" --grep @critical"
   },
   "repository": {
     "type": "git",

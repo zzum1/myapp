@@ -28,7 +28,7 @@ jobs:
           TOKEN: ${{ secrets.TOKEN }}
           USERNAME: ${{ secrets.USERNAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
-        run: npx playwright test --project='API Tests'
+        run: npm run test:api-critical
       - name: Upload API Test Report
         uses: actions/upload-artifact@v4
         if: always()
