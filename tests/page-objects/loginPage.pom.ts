@@ -14,6 +14,6 @@ export class LoginPage {
   }
 
   async goToLoginPage() {
-    await this.page.goto(process.env.BASE_URL!);
+    await this.page.goto(process.env.LOGIN_URL!);
   }
 }

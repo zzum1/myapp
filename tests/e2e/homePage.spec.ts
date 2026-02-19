@@ -1,8 +1,9 @@
 import { test } from "../fixtures/page-objects-fixtures";
 
+test.use({ storageState: { cookies: [], origins: [] } });
+
 test.describe("Home Page tests", () => {
   test("should display the sticky header", async ({ homePage }) => {
-    await homePage.goToHomePage();
     await homePage.headerShouldBeVisible();
   });
 
@@ -10,8 +11,14 @@ test.describe("Home Page tests", () => {
     homePage,
     loginPage,
   }) => {
-    await homePage.goToHomePage();
     await homePage.clickReservationButton();
     await loginPage.loginFormShouldBeVisible();
+  });
+
+  test("should make a screenshot of main section", async ({
+    homePage,
+    cookieConsent,
+  }) => {
+    await homePage.takeMainSectionScreenshot();
   });
 });
