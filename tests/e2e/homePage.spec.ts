@@ -1,5 +1,7 @@
 import { test } from "../fixtures/page-objects-fixtures";
 
+test.use({ storageState: { cookies: [], origins: [] } });
+
 test.describe("Home Page tests", () => {
   test("should display the sticky header", async ({ homePage }) => {
     await homePage.headerShouldBeVisible();
