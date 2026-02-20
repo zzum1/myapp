@@ -7,7 +7,7 @@ test.describe("Create Booking API Test", () => {
 
   test(
     "should create a new booking",
-    { tag: "critical" },
+    { tag: "@critical" },
     async ({ request }) => {
       const newBooking = generateRandomUserData();
 
