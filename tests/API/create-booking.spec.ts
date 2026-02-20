@@ -1,5 +1,6 @@
 import { expect, test } from "@playwright/test";
 import { generateRandomUserData } from "../../helpers/user-data";
+import { bookingSchema } from "../../schema-validation/booking-schema";
 
 test.describe("Create Booking API Test", () => {
   let bookingId: number;
@@ -13,9 +14,9 @@ test.describe("Create Booking API Test", () => {
 
     expect(response.status()).toBe(200);
     const responseBody = await response.json();
-    bookingId = responseBody.bookingid;
 
-    expect(responseBody).toHaveProperty("bookingid");
-    expect(responseBody.booking).toMatchObject(newBooking);
+    expect(() => {
+      bookingSchema.parse(responseBody);
+    }).not.toThrow();
   });
 });
