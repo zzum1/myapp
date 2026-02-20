@@ -1,1 +1,1 @@
-API testing lab with Playwright
+API testing & E2E testing lab with Playwright
